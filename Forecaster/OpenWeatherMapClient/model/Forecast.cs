@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace OpenWeatherMapClient.model
+namespace OpenWeatherMapClient.Model
 {
     public class Forecast
     {

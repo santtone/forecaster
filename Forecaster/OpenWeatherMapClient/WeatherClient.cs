@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Newtonsoft.Json;
-using OpenWeatherMapClient.model;
+using OpenWeatherMapClient.Model;
+using System;
 
 namespace OpenWeatherMapClient
 {
@@ -18,7 +19,14 @@ namespace OpenWeatherMapClient
             string parameters = $"q={locationName}";
             var response = await _weatherHttpClient.GetAsync(parameters);
             var data = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<Forecast>(data);
+            try
+            {
+                return JsonConvert.DeserializeObject<Forecast>(data);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to deserialize weather data", ex);
+            }
         }
 
     }
